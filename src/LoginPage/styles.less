@@ -7,4 +7,23 @@
   background-color: @primary-color;
   display: flex;
   color: #fff;
+
+  &__banner {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media @phone {
+      flex-direction: column;
+    }
+  }
+
+  &__text {
+    padding: 24px;
+  }
+
+  &__image {
+    max-width: 50%;
+  }
 }
