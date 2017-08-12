@@ -15,14 +15,17 @@ const LoginPage = React.createClass({
                     <div className="loginPage__text">
                         <h1>Semargle Tasks</h1>
                         <p>Organise your life!</p>
+                        <RaisedButton
+                            className="login-button"
+                            label="Login with Google"
+                            onClick={this.handleLogIn}
+                        />
                     </div>
-                    <RaisedButton
-                        className="login-button"
-                        label="Log in"
-                        onClick={this.handleLogIn}
-                    />
                 </div>
-                <img src="/img/desk.png" />
+                <img
+                    src="/img/desk.png"
+                    className="loginPage_image"
+                />
             </div>
         );
     }

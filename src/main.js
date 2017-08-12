@@ -5,12 +5,21 @@ import { Router, Route, hashHistory } from 'react-router';
 import App from './App.jsx';
 import LoginPage from './LoginPage/LoginPage.jsx';
 
-ReactDOM.render(
-    <Router history={hashHistory}>
-        <Route path='/' component={App}>
-            <Route path='/login' component={LoginPage} />
-        </Route>
-    </Router>,
-    document.getElementById('mount-point')
-);
+window.handleGoogleApiLoaded = () => {
+    console.log('Api loaded!');
+};
+
+renderApp();
+
+function renderApp() {
+    ReactDOM.render(
+        <Router history={hashHistory}>
+            <Route path='/' component={App}>
+                <Route path='/login' component={LoginPage} />
+            </Route>
+        </Router>,
+        document.getElementById('mount-point')
+    );
+}
+
 
