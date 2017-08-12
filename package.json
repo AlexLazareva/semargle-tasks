@@ -1,0 +1,11 @@
+{
+  "name": "semargle-tasks",
+  "version": "1.0.0",
+  "description": "Semargle google tasks application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alex Lazareva",
+  "license": "ISC"
+}
