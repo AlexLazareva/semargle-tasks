@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
 
+import './styles/base.less';
+
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
