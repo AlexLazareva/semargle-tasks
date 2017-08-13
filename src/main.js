@@ -10,7 +10,7 @@ import LoggedInLayout from './containers/LoggedInLayout/LoggedInLayout';
 import LoginPage from './pages/LoginPage/LoginPage.jsx';
 import AboutPage from './pages/AboutPage/AboutPage.jsx';
 import TasklistsPage from './pages/TaskslistsPage/TasklistsPage.jsx';
-import TaskPage from './pages/TasksPage/TasklPage.jsx';
+import TaskPage from './pages/TasksPage/TasksPage.jsx';
 
 window.handleGoogleApiLoaded = () => {
     SessionActions.authorize(true, renderApp);
