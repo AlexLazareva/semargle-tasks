@@ -1,11 +1,33 @@
 import React from 'react';
 
+import SessionStore from './../stores/SessionStore';
+import SessionActions from './../actions/SessionActions';
+
 import RaisedButton from 'material-ui/lib/raised-button';
 import './styles.less';
 
+function getStateFromFlux() {
+    return {
+        isLoggedIn: SessionStore.isLoggedIn()
+    };
+}
+
 const LoginPage = React.createClass({
+
+    getInitialState() {
+        return getStateFromFlux();
+    },
+
+    componentDidMount() {
+        SessionStore.addChangeListener(this._onChange);
+    },
+
+    componentWillUnmount() {
+        SessionStore.removeChangeListener(this._onChange);
+    },
+
     handleLogIn() {
-        console.log('Login clicked');
+        SessionActions.authorize();
     },
 
     render() {
@@ -28,6 +50,10 @@ const LoginPage = React.createClass({
                 />
             </div>
         );
+    },
+
+    _onChange() {
+        this.setState(getStateFromFlux());
     }
 });
 

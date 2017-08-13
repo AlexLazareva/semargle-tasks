@@ -11,7 +11,7 @@ const SessionActions = {
                     type: AppConstants.SESSION_AUTHORIZE_SUCCESS
                 });
 
-                callback();
+                if (callback) callback();
             })
             .catch((err) => {
                 AppDispatcher.dispatch({
@@ -19,7 +19,7 @@ const SessionActions = {
                     error: err
                 });
 
-                callback();
+                if (callback) callback();
             });
     }
 };
