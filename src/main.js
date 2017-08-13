@@ -10,6 +10,7 @@ import LoggedInLayout from './containers/LoggedInLayout/LoggedInLayout';
 import LoginPage from './pages/LoginPage/LoginPage.jsx';
 import AboutPage from './pages/AboutPage/AboutPage.jsx';
 import TasklistsPage from './pages/TaskslistsPage/TasklistsPage.jsx';
+import TaskPage from './pages/TasksPage/TasklPage.jsx';
 
 window.handleGoogleApiLoaded = () => {
     SessionActions.authorize(true, renderApp);
@@ -23,7 +24,7 @@ function renderApp() {
                 <Route component={LoggedInLayout} onEnter={requireAuth}>
                     <Route path='/about' component={AboutPage} />
                     <Route path='/lists' component={TasklistsPage}>
-
+                        <Route path='/lists/:id' component={TaskPage}/>
                     </Route>
                 </Route>
             </Route>

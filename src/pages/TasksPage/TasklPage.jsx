@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.less';
 
-const TasklistPage = React.createClass({
+const TaskPage = React.createClass({
     render() {
         return (
             <div>TaskPage</div>
@@ -9,4 +9,4 @@ const TasklistPage = React.createClass({
     }
 });
 
-export default TasklistPage;
+export default TaskPage;
