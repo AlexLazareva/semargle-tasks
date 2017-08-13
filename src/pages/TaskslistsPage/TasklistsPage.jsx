@@ -11,7 +11,13 @@ import AddIcon from 'material-ui/lib/svg-icons/content/add';
 import './styles.less';
 
 const TasklistPage = React.createClass({
+    contextTypes: {
+        router: React.PropTypes.object.isRequired
+    },
+
     render() {
+        const { router } = this.context;
+
         return (
             <div className="taskslistPage">
                 <div className="taskslistPage__menu">
@@ -22,10 +28,12 @@ const TasklistPage = React.createClass({
                             <ListItem
                                 leftIcon={<HomeIcon/>}
                                 primaryText="Home"
+                                onClick={router.push.bind(null, `/lists`)}
                             />
                             <ListItem
                                 leftIcon={<ListIcon />}
                                 primaryText="About"
+                                onClick={router.push.bind(null, `/lists`)}
                             />
                         </List>
                         <Divider/>
@@ -36,6 +44,7 @@ const TasklistPage = React.createClass({
                             <ListItem
                                 leftIcon={<ExitIcon />}
                                 primaryText="Log out"
+                                onClick={this.handleLogOut}
                             />
                         </List>
                     </List>
