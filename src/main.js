@@ -2,16 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, hashHistory } from 'react-router';
 
-import api from './api';
-
 import App from './App.jsx';
 import LoginPage from './LoginPage/LoginPage.jsx';
 
 window.handleGoogleApiLoaded = () => {
-    api.authorize({ immediate: false });
+    SessionActions.authorize(true, renderApp);
 };
-
-renderApp();
 
 function renderApp() {
     ReactDOM.render(
