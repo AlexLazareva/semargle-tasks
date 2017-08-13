@@ -5,7 +5,7 @@ import { Router, Route, hashHistory } from 'react-router';
 import SessionActions from './actions/SessionActions';
 
 import App from './App.jsx';
-import LoginPage from './LoginPage/LoginPage.jsx';
+import LoginPage from './pages/LoginPage/LoginPage.jsx';
 
 window.handleGoogleApiLoaded = () => {
     SessionActions.authorize(true, renderApp);
@@ -16,6 +16,7 @@ function renderApp() {
         <Router history={hashHistory}>
             <Route path='/' component={App}>
                 <Route path='/login' component={LoginPage} />
+                <Route path='/about' component={AboutPage} />
             </Route>
         </Router>,
         document.getElementById('mount-point')

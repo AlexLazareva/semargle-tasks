@@ -1,7 +1,7 @@
 import React from 'react';
 
-import SessionStore from './../stores/SessionStore';
-import SessionActions from './../actions/SessionActions';
+import SessionStore from './../../stores/SessionStore';
+import SessionActions from './../../actions/SessionActions';
 
 import RaisedButton from 'material-ui/lib/raised-button';
 import './styles.less';
@@ -20,6 +20,12 @@ const LoginPage = React.createClass({
 
     componentDidMount() {
         SessionStore.addChangeListener(this._onChange);
+    },
+
+    componentWillUpdate(nextProps, nextState) {
+        if (nextState.isLoggedIn) {
+            this.context.router.replace('/about');
+        }
     },
 
     componentWillUnmount() {
