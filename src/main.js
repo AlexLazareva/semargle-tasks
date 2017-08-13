@@ -6,6 +6,7 @@ import SessionActions from './actions/SessionActions';
 
 import App from './App.jsx';
 import LoginPage from './pages/LoginPage/LoginPage.jsx';
+import AboutPage from './pages/AboutPage/AboutPage.jsx';
 
 window.handleGoogleApiLoaded = () => {
     SessionActions.authorize(true, renderApp);
