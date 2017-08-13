@@ -13,6 +13,9 @@ function getStateFromFlux() {
 }
 
 const LoginPage = React.createClass({
+    contextTypes: {
+        router: React.PropTypes.object.isRequired
+    },
 
     getInitialState() {
         return getStateFromFlux();
@@ -20,6 +23,10 @@ const LoginPage = React.createClass({
 
     componentDidMount() {
         SessionStore.addChangeListener(this._onChange);
+
+        if(this.state.isLoggedIn) {
+            this.redirectLoggedInUser();
+        }
     },
 
     componentWillUpdate(nextProps, nextState) {
@@ -29,7 +36,7 @@ const LoginPage = React.createClass({
             if (location.state && location.state.nextPathname) {
                 this.context.router.replace(location.state.nextPathname);
             } else {
-                this.context.router.replace('/lists');                
+                this.context.router.replace('/lists');
             }
         }
     },

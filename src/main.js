@@ -3,12 +3,13 @@ import ReactDOM from 'react-dom';
 import { Router, Route, hashHistory } from 'react-router';
 
 import SessionActions from './actions/SessionActions';
-import SessionStore from './actions/SessionStore';
+import SessionStore from './stores/SessionStore';
 
 import App from './App.jsx';
 import LoggedInLayout from './containers/LoggedInLayout/LoggedInLayout';
 import LoginPage from './pages/LoginPage/LoginPage.jsx';
 import AboutPage from './pages/AboutPage/AboutPage.jsx';
+import TasklistsPage from './pages/TaskslistsPage/TasklistsPage.jsx';
 
 window.handleGoogleApiLoaded = () => {
     SessionActions.authorize(true, renderApp);
@@ -21,6 +22,9 @@ function renderApp() {
                 <Route path='/login' component={LoginPage} />
                 <Route component={LoggedInLayout} onEnter={requireAuth}>
                     <Route path='/about' component={AboutPage} />
+                    <Route path='/lists' component={TasklistsPage}>
+
+                    </Route>
                 </Route>
             </Route>
         </Router>,
