@@ -115,6 +115,11 @@ const TasklistPage = React.createClass({
                 <div className="taskslistPage__tasks">
                     {this.props.children}
                 </div>
+                <TaskListCreateModal
+                    isOpen={this.state.isCreatingTaskList}
+                    onSubmit={this.handleTaskListSubmit}
+                    onClose={this.handleClose}
+                />
             </div>
         );
     },
