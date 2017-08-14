@@ -1,5 +1,8 @@
 import React from 'react';
 
+import TasksListStore from './../../stores/TasksListStore';
+import TasksListActions from './../../actions/TasksListActions';
+
 import Divider from 'material-ui/lib/divider';
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
@@ -10,9 +13,33 @@ import FolderIcon from 'material-ui/lib/svg-icons/file/folder';
 import AddIcon from 'material-ui/lib/svg-icons/content/add';
 import './styles.less';
 
+function getStateFromFlux() {
+    return {
+        taskList: TasksListStore.getTaskList()
+    };
+}
+
 const TasklistPage = React.createClass({
     contextTypes: {
         router: React.PropTypes.object.isRequired
+    },
+
+    getInitialState() {
+        return {
+            ...getStateFromFlux()
+        };
+    },
+
+    componentWillMount() {
+        TasksListActions.loadTaskLists();
+    },
+
+    componentDidMount() {
+        TasksListStore.addChangeListener(this._onChange);
+    },
+
+    componentWillUnmount() {
+        TasksListStore.removeChangeListener(this._onChange);
     },
 
     render() {
@@ -54,6 +81,10 @@ const TasklistPage = React.createClass({
                 </div>
             </div>
         );
+    },
+
+    _onChange() {
+        this.setState(getStateFromFlux());
     }
 });
 

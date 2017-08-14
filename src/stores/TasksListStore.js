@@ -55,3 +55,5 @@ AppDispatcher.register(function (action) {
         }
     }
 });
+
+export default TasksListStore;
