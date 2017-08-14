@@ -15,7 +15,7 @@ import './styles.less';
 
 function getStateFromFlux() {
     return {
-        taskList: TasksListStore.getTaskList()
+        taskLists: TasksListStore.getTaskList()
     };
 }
 
@@ -42,6 +42,10 @@ const TasklistPage = React.createClass({
         TasksListStore.removeChangeListener(this._onChange);
     },
 
+    handleLogOut() {
+        alert('Clicked!');
+    },
+
     render() {
         const { router } = this.context;
 
@@ -60,11 +64,21 @@ const TasklistPage = React.createClass({
                             <ListItem
                                 leftIcon={<ListIcon />}
                                 primaryText="About"
-                                onClick={router.push.bind(null, `/lists`)}
+                                onClick={router.push.bind(null, `/about`)}
                             />
                         </List>
                         <Divider/>
                         <List className="taskslistPage__list" subheader="Tasks List">
+                            {
+                                this.state.taskLists.map(list =>
+                                    <ListItem
+                                        key={list.id}
+                                        leftIcon={<FolderIcon/>}
+                                        primaryText={list.name}
+                                        onClick={router.push.bind(null, `/lists/${list.id}`)}
+                                    />
+                                )
+                            }
                         </List>
                         <Divider/>
                         <List className="taskslistPage__list" >
