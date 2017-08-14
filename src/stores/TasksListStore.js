@@ -50,6 +50,21 @@ AppDispatcher.register(function (action) {
             break;
         }
 
+        case AppConstants.TASK_LIST_CREATE_SUCCESS: {
+            const newTaskList = formatTask(action.taskList);
+            _taskLists.push(newTaskList);
+
+            TasksListStore.emitChange();
+            break;
+        }
+
+        case AppConstants.TASK_LIST_CREATE_FAIL: {
+            _error = action.error;
+
+            TasksListStore.emitChange();
+            break;
+        }
+
         default: {
 
         }
