@@ -3,6 +3,8 @@ import React from 'react';
 import TasksListStore from './../../stores/TasksListStore';
 import TasksListActions from './../../actions/TasksListActions';
 
+import TaskListCreateModal from './../../components/TaskListCreateModal/TaskListCreateModal';
+
 import Divider from 'material-ui/lib/divider';
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
@@ -26,7 +28,8 @@ const TasklistPage = React.createClass({
 
     getInitialState() {
         return {
-            ...getStateFromFlux()
+            ...getStateFromFlux(),
+            isCreatingTaskList: false
         };
     },
 
@@ -40,6 +43,20 @@ const TasklistPage = React.createClass({
 
     componentWillUnmount() {
         TasksListStore.removeChangeListener(this._onChange);
+    },
+
+    handleAddTaskList() {
+        this.setState({ isCreatingTaskList : true });
+    },
+
+    handleClose() {
+        this.setState({ isCreatingTaskList : false });
+    },
+
+    handleTaskListSubmit(taskList) {
+        TasksListActions.createTaskList(taskList);
+
+        this.setState({ isCreatingTaskList : false });
     },
 
     handleLogOut() {
@@ -79,6 +96,11 @@ const TasklistPage = React.createClass({
                                     />
                                 )
                             }
+                            <ListItem
+                                leftIcon={<AddIcon/>}
+                                primaryText="Create new list"
+                                onClick={this.handleAddTaskList}
+                            />
                         </List>
                         <Divider/>
                         <List className="taskslistPage__list" >
