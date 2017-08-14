@@ -17,7 +17,19 @@ const TasksPage = React.createClass({
     getInitialState() {
         return {
             ...getStateFromFlux()
-        } ;
+        };
+    },
+
+    componentWillMount() {
+        TasksActions.loadTasks(this.props.params.id);
+    },
+
+    componentDidMount() {
+        TasksStore.addChangeListener(this._onChange);
+    },
+
+    componentWillUnmount() {
+        TasksStore.addChangeListener(this._onChange);
     },
 
     render() {
@@ -37,6 +49,10 @@ const TasksPage = React.createClass({
                 </div>
             </div>
         );
+    },
+
+    _onChange() {
+        this.setState(getStateFromFlux());
     }
 });
 
