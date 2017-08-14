@@ -55,16 +55,16 @@ AppDispatcher.register(function (action) {
         }
 
         case AppConstants.TASK_CREATE_SUCCESS: {
-            const newTaskList = formatTask(action.taskList);
-            _taskLists.push(newTaskList);
+            const newTask = formatTask(action.task);
+            _tasks.unshift(newTask);
 
             TasksStore.emitChange();
             break;
         }
 
         case AppConstants.TASK_UPDATE_FAIL: {
-            _error = action.error;
-
+            const updateTaskIndex = _tasks.findIndex(task => task.id === action.taskId);
+            _tasks[updateTaskIndex] = formatTask(action.task);
             TasksStore.emitChange();
             break;
         }
