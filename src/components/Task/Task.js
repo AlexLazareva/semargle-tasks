@@ -1,6 +1,8 @@
 import React from 'react';
 import Checkbox from 'material-ui/lib/checkbox';
 
+import './styles.less';
+
 const Task = React.createClass({
     render() {
         return (
@@ -11,7 +13,7 @@ const Task = React.createClass({
                 />
 
                 <div className='task__text'>
-                    <div className='task__title'>{ this.props.text}</div>
+                    <div className='task__title'>{ this.props.text }</div>
                 </div>
             </div>
         );

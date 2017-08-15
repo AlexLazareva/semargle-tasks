@@ -11,7 +11,7 @@ let _error = null;
 function formatTask(data) {
     return {
         id: data.id,
-        name: data.title,
+        text: data.title,
         notes: data.notes,
         dueTime: data.due ? new Date(data.due) : '',
         isCompleted: data.status === 'completed',
@@ -54,14 +54,14 @@ AppDispatcher.register(function (action) {
             break;
         }
 
-        // case AppConstants.TASK_CREATE_SUCCESS: {
-        //     const newTask = formatTask(action.task);
-        //     _tasks.unshift(newTask);
-        //
-        //     TasksStore.emitChange();
-        //     break;
-        // }
-        //
+        case AppConstants.TASK_CREATE_SUCCESS: {
+            const newTask = formatTask(action.task);
+            _tasks.unshift(newTask);
+
+            TasksStore.emitChange();
+            break;
+        }
+
         // case AppConstants.TASK_UPDATE_FAIL: {
         //     const updateTaskIndex = _tasks.findIndex(task => task.id === action.taskId);
         //     _tasks[updateTaskIndex] = formatTask(action.task);
