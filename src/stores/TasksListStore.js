@@ -8,7 +8,7 @@ const CHANGE_EVENT = 'change';
 let _taskLists = [];
 let _error = null;
 
-function formatTask(data) {
+function formatTaskList(data) {
     return {
         id: data.id,
         name: data.title
@@ -36,7 +36,7 @@ const TasksListStore = Object.assign({}, EventEmitter.prototype, {
 AppDispatcher.register(function (action) {
     switch(action.type) {
         case AppConstants.TASK_LISTS_LOAD_SUCCESS: {
-            _taskLists = action.items.map(formatTask);
+            _taskLists = action.items.map(formatTaskList);
 
             TasksListStore.emitChange();
             break;
@@ -51,7 +51,7 @@ AppDispatcher.register(function (action) {
         }
 
         case AppConstants.TASK_LIST_CREATE_SUCCESS: {
-            const newTaskList = formatTask(action.taskList);
+            const newTaskList = formatTaskList(action.taskList);
             _taskLists.push(newTaskList);
 
             TasksListStore.emitChange();

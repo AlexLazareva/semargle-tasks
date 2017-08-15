@@ -26,7 +26,8 @@ const TaskListsActions = {
                     type: AppConstants.TASK_LIST_CREATE_SUCCESS,
                     taskList: data
                 });
-            }).catch(err => {
+            })
+            .catch(err => {
             AppDispatcher.dispatch({
                 type: AppConstants.TASK_LIST_CREATE_FAIL,
                 error: err
