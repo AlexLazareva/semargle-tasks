@@ -62,6 +62,7 @@ const TasksPage = React.createClass({
                                 key={task.id}
                                 text={task.text}
                                 isCompleted={task.isCompleted}
+                                onStatusChange={this.handleStatusChange.bind(null, task.id)}
                             />
                         )
                     }

@@ -20,7 +20,7 @@ const TasksActions = {
         });
     },
 
-    updateTask(params) {
+    updateTaskStatus(params) {
         api.updateTask({
             taskListId: params.taskListId,
             taskId: params.taskId,

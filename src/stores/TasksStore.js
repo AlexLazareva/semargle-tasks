@@ -62,12 +62,12 @@ AppDispatcher.register(function (action) {
             break;
         }
 
-        // case AppConstants.TASK_UPDATE_FAIL: {
-        //     const updateTaskIndex = _tasks.findIndex(task => task.id === action.taskId);
-        //     _tasks[updateTaskIndex] = formatTask(action.task);
-        //     TasksStore.emitChange();
-        //     break;
-        // }
+        case AppConstants.TASK_UPDATE_SUCCESS: {
+            const updateTaskIndex = _tasks.findIndex(task => task.id === action.taskId);
+            _tasks[updateTaskIndex] = formatTask(action.task);
+            TasksStore.emitChange();
+            break;
+        }
 
         default: {
 
