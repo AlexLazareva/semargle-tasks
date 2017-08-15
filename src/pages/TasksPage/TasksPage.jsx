@@ -5,6 +5,9 @@ import TasksActions from './../../actions/TasksActions';
 
 import IconButton from 'material-ui/lib/icon-button';
 import ContentAdd from 'material-ui/lib/svg-icons/content/add';
+
+import Task from './../../components/Task/Task';
+
 import './styles.less';
 
 function getStateFromFlux() {
@@ -45,7 +48,15 @@ const TasksPage = React.createClass({
                 </div>
 
                 <div className="tasksPage__tasks">
-                    Tasks
+                    {
+                        this.state.tasks.map(task =>
+                            <Task
+                                key={task.id}
+                                text={task.text}
+                                isCompleted={task.isCompleted}
+                            />
+                        )
+                    }
                 </div>
             </div>
         );

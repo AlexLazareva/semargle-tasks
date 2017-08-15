@@ -42,7 +42,7 @@ export default {
 
     listTasks(taskListId) {
         const request = gapi.client.tasks.tasks.list({
-            taskList: taskListId
+            tasklist: taskListId
         });
 
         return new Promise((resolve, reject) => {
