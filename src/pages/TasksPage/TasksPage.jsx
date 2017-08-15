@@ -35,6 +35,14 @@ const TasksPage = React.createClass({
         TasksStore.addChangeListener(this._onChange);
     },
 
+    handleStatusChange(taskId, { isCompleted }) {
+        TasksActions.updateTaskStatus({
+            taskListId: this.props.params.id,
+            taskId: taskId,
+            isCompleted: isCompleted
+        });
+    },
+
     render() {
         return (
             <div className="taskPage">
