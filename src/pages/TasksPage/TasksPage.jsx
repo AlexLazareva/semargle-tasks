@@ -3,6 +3,8 @@ import React from 'react';
 import TasksStore from './../../stores/TasksStore';
 import TasksActions from './../../actions/TasksActions';
 
+import TaskCreateModal from './../../components/TaskCreateModal/TaskCreateModal';
+
 import IconButton from 'material-ui/lib/icon-button';
 import ContentAdd from 'material-ui/lib/svg-icons/content/add';
 
@@ -52,13 +54,29 @@ const TasksPage = React.createClass({
         });
     },
 
+    handleAddTask() {
+        this.setState({ isCreatingTask: true });
+    },
+
+    handleClose() {
+        this.setState({ isCreatingTask: false });
+    },
+
+    handleTaskSubmit(task) {
+        const taskListId = this.props.params.id;
+
+        TasksActions.createTask({ taskListId, ...task});
+
+        this.setState({ isCreatingTask : false });
+    },
+
     render() {
         return (
             <div className="taskPage">
                 <div className="taskPage__header">
                     <h2 className="taskPage__title">List name</h2>
                     <div className="taskPage__tools">
-                        <IconButton>
+                        <IconButton onClick={this.handleAddTask}>
                             <ContentAdd/>
                         </IconButton>
                     </div>
@@ -77,6 +95,11 @@ const TasksPage = React.createClass({
                         )
                     }
                 </div>
+                <TaskCreateModal
+                    isOpen={this.state.isCreatingTask}
+                    onSubmit={this.handleTaskSubmit}
+                    onClose={this.handleClose}
+                />
             </div>
         );
     },
