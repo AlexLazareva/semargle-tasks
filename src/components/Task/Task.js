@@ -9,6 +9,9 @@ import FlatButton from 'material-ui/lib/flat-button';
 
 import './styles.less';
 
+const ENTER_KEY = 13;
+const ESC_KEY = 27;
+
 const Task = React.createClass({
     getInitialState() {
         return {
@@ -21,19 +24,41 @@ const Task = React.createClass({
     },
 
     handleCancel() {
-        this.setState({ isEditing: false });
+        this.cancelTask()
     },
 
     handleSave() {
-        this.props.onUpdate({ text: this.input.value });
-
-        this.setState({ isEditing: false });
+        this.saveTask()
     },
 
     handleCheck() {
         this.props.onStatusChange({
             isCompleted: !this.props.isCompleted
         });
+    },
+
+    handleKeyDown(e) {
+        if (e.keyCode === ENTER_KEY) {
+            this.saveTask();
+        }
+
+        if (e.keyCode === ESC_KEY) {
+            this.cancelTask();
+        }
+    },
+
+    focusInput() {
+        this.input.focus();
+    },
+
+    saveTask() {
+        this.props.onUpdate({ text: this.input.value });
+
+        this.setState({ isEditing: false });
+    },
+
+    cancelTask() {
+        this.setState({ isEditing: false });
     },
 
     render() {
@@ -45,6 +70,7 @@ const Task = React.createClass({
                         className='task__input'
                         type='text'
                         defaultValue={this.props.text}
+                        onKeyDown={this.handleKeyDown}
                         ref={ c => this.input = c }
                     />
                     <div className='task__toolbar'>
