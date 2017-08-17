@@ -34,6 +34,12 @@ const TasksPage = React.createClass({
         TasksStore.addChangeListener(this._onChange);
     },
 
+    componentWillReceiveProps(nextProps) {
+        if (this.props.params.id !==nextProps.params.id) {
+            TasksActions.loadTasks(nextProps.params.id);
+        }
+    },
+
     componentWillUnmount() {
         TasksStore.addChangeListener(this._onChange);
     },
