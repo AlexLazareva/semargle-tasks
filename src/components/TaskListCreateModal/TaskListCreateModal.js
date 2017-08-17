@@ -64,6 +64,7 @@ const TaskListCreateModal = React.createClass({
                 <h3 className='TaskListCreateModal__modal-title'>Add task</h3>
                 <TextField
                     fullWidth
+                    ref={c => this.taskInput = c}
                     value={name}
                     onChange={this.handleTextChange}
                     hintText='e.g. movies to watch'

@@ -61,7 +61,7 @@ export default {
         });
     },
 
-    updateTask({ taskListId, taskId, params}) {
+    updateTask({ taskListId, taskId, ...params}) {
         const request = gapi.client.tasks.tasks.update({
             tasklist: taskListId,
             task: taskId,

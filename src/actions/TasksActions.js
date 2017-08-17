@@ -39,7 +39,28 @@ const TasksActions = {
                 error: err
             });
         });
-    }
+    },
+
+    updateTask(params) {
+        api.updateTask({
+            taskListId: params.taskListId,
+            taskId: params.taskId,
+            title: params.text
+        })
+            .then(data => {
+                AppDispatcher.dispatch({
+                    type   : AppConstants.TASK_UPDATE_SUCCESS,
+                    task   : data,
+                    taskId : params.taskId
+                });
+            })
+            .catch(err => {
+                AppDispatcher.dispatch({
+                    type  : AppConstants.TASK_UPDATE_FAIL,
+                    error : err
+                });
+            });
+    },
 };
 
 export default TasksActions;

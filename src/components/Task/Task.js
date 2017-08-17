@@ -9,6 +9,7 @@ const Task = React.createClass({
             isCompleted: !this.props.isCompleted
         });
     },
+
     render() {
         return (
             <div className='task'>

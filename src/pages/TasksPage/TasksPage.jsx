@@ -43,6 +43,14 @@ const TasksPage = React.createClass({
         });
     },
 
+    handleTaskUpdate(taskId, { text }) {
+        TasksActions.updateTask({
+            taskListId: this.props.params.id,
+            taskId: taskId,
+            text: text
+        });
+    },
+
     render() {
         return (
             <div className="taskPage">
@@ -63,6 +71,7 @@ const TasksPage = React.createClass({
                                 text={task.text}
                                 isCompleted={task.isCompleted}
                                 onStatusChange={this.handleStatusChange.bind(null, task.id)}
+                                onUpdate={this.handleTaskUpdate.bind(null, task.id)}
                             />
                         )
                     }
