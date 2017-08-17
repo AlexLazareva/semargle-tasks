@@ -19,7 +19,8 @@ function getStateFromFlux() {
 const TasksPage = React.createClass({
     getInitialState() {
         return {
-            ...getStateFromFlux()
+            ...getStateFromFlux(),
+            isCreatingTask: false
         };
     },
 

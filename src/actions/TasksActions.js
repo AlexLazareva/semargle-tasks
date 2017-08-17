@@ -61,6 +61,25 @@ const TasksActions = {
                 });
             });
     },
+
+    createTask(params) {
+        api.insertTask({
+            taskListId: params.taskListId,
+            title: params.text
+        })
+        .then(data => {
+            AppDispatcher.dispatch({
+                type: AppConstants.TASK_CREATE_SUCCESS,
+                task: data
+            });
+        })
+        .catch(err => {
+            AppDispatcher.dispatch({
+                type: AppConstants.TASK_CREATE_FAIL,
+                error: err
+            });
+        });
+    },
 };
 
 export default TasksActions;
