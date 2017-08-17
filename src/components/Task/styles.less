@@ -23,4 +23,28 @@
   &__checkbox {
     max-width: 40px;
   }
+
+  &__toolbar {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+
+    > * {
+      margin-right: 6px;
+    }
+  }
+
+  &__input {
+    font-size: 16px;
+    margin: 8px 16px;
+    padding: 6px;
+    width: 100%;
+    border: 1px solid @divider-color;
+
+    &:focus {
+      outline: 0;
+      border: 1px solid @primary-color;
+    }
+  }
 }

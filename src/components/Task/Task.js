@@ -44,6 +44,7 @@ const Task = React.createClass({
                     <input
                         className='task__input'
                         type='text'
+                        defaultValue={this.props.text}
                         ref={ c => this.input = c }
                     />
                     <div className='task__toolbar'>
