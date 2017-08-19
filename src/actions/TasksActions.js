@@ -80,6 +80,26 @@ const TasksActions = {
             });
         });
     },
+
+    deleteTask(params) {
+        api.deleteTask({
+            taskListId: params.taskListId,
+            title: params.taskId
+        })
+            .then(data => {
+                AppDispatcher.dispatch({
+                    type: AppConstants.TASK_DELETE_SUCCESS,
+                    taskId: params.taskId,
+                    task: data
+                });
+            })
+            .catch(err => {
+                AppDispatcher.dispatch({
+                    type: AppConstants.TASK_DELETE_FAIL,
+                    error: err
+                });
+            });
+    },
 };
 
 export default TasksActions;
