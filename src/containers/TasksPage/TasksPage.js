@@ -45,7 +45,7 @@ const TasksPageContainer = React.createClass({
         TasksStore.addChangeListener(this._onChange);
     },
 
-    handleStatusChange(taskId, { isCompleted }) {
+    handleTaskStatusChange(taskId, { isCompleted }) {
         TasksActions.updateTaskStatus({
             taskListId: this.props.params.id,
             taskId: taskId,
@@ -105,7 +105,7 @@ const TasksPageContainer = React.createClass({
                     isLoadingTasks={this.state.isLoadingTasks}
                     error={this.state.error}
                     onAddTask={this.handleAddTask}
-                    onStatusChange={this.handleStatusChange}
+                    onStatusChange={this.handleTaskStatusChange}
                     onTaskUpdate={this.handleTaskUpdate}
                     onTaskDelete={this.handleTaskDelete}
                     onDeleteTaskList={this.handleDeleteTaskList}

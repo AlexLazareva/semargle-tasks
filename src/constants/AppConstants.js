@@ -10,6 +10,7 @@ export default keyMirror({
     TASK_LIST_CREATE_FAIL: null,
     TASK_LIST_UPDATE_SUCCESS: null,
     TASK_LIST_UPDATE_FAIL: null,
+    TASK_LIST_UPDATE_REQUEST: null,
     TASK_LIST_DELETE_SUCCESS: null,
     TASK_LIST_DELETE_FAIL: null,
 

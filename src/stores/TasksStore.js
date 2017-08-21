@@ -77,6 +77,16 @@ AppDispatcher.register(function (action) {
             break;
         }
 
+        case AppConstants.TASK_CREATE_REQUEST: {
+            const updatedTaskIndex = _tasks.findIndex(task => task.id === action.taskId);
+
+            _tasks[updatedTaskIndex].isCompleted = action.isCompleted !== undefined ? action.isCompleted : _tasks[updatedTaskIndex].isCompleted;
+            _tasks[updatedTaskIndex].text = action.text || _tasks[updatedTaskIndex].text;
+
+            TasksStore.emitChange();
+            break;
+        }
+
         case AppConstants.TASK_UPDATE_SUCCESS: {
             const updatedTaskIndex = _tasks.findIndex(task => task.id === action.taskId);
             _tasks[updatedTaskIndex] = formatTask(action.task);

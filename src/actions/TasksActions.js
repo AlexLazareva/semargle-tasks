@@ -24,6 +24,12 @@ const TasksActions = {
     },
 
     updateTaskStatus(params) {
+        AppDispatcher.dispatch({
+            type: AppConstants.TASK_LIST_UPDATE_REQUEST,
+            taskId: params.taskId,
+            isCompleted: params.isCompleted
+        });
+
         api.updateTask({
             taskListId: params.taskListId,
             taskId: params.taskId,
@@ -45,6 +51,12 @@ const TasksActions = {
     },
 
     updateTask(params) {
+        AppDispatcher.dispatch({
+            type: AppConstants.TASK_LIST_UPDATE_REQUEST,
+            taskId: params.taskId,
+            text: params.text
+        });
+
         api.updateTask({
             taskListId: params.taskListId,
             taskId: params.taskId,

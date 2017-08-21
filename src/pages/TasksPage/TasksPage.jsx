@@ -100,6 +100,9 @@ const TasksPage = React.createClass({
                         <IconButton onClick={this.handleAddTask}>
                             <ContentAdd/>
                         </IconButton>
+                        <IconButton onClick={this.props.onDeleteTaskList}>
+                            <ActionDelete />
+                        </IconButton>
                     </div>
                 </div>
                 {
