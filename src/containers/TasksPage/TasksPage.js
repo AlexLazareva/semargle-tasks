@@ -89,12 +89,20 @@ const TasksPageContainer = React.createClass({
         this.context.router.push('/lists');
     },
 
+    handleUpdateTaskList({ name }) {
+        TasksListsActions.updateTaskList({
+            taskListId: this.props.params.id,
+            name
+        });
+    },
+
     render() {
         return (
             <div>
                 <TasksPage
                     taskList={this.state.taskList}
                     tasks={this.state.tasks}
+                    isLoadingTasks={this.state.isLoadingTasks}
                     error={this.state.error}
                     onAddTask={this.handleAddTask}
                     onStatusChange={this.handleStatusChange}
