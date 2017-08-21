@@ -8,6 +8,10 @@ export default keyMirror({
     TASK_LISTS_LOAD_FAIL: null,
     TASK_LIST_CREATE_SUCCESS: null,
     TASK_LIST_CREATE_FAIL: null,
+    TASK_LIST_UPDATE_SUCCESS: null,
+    TASK_LIST_UPDATE_FAIL: null,
+    TASK_LIST_DELETE_SUCCESS: null,
+    TASK_LIST_DELETE_FAIL: null,
 
     TASKS_LOAD_SUCCESS: null,
     TASKS_LOAD_FAIL: null,
@@ -16,5 +20,6 @@ export default keyMirror({
     TASK_UPDATE_SUCCESS: null,
     TASK_UPDATE_FAIL: null,
     TASK_DELETE_SUCCESS: null,
-    TASK_DELETE_FAIL: null
+    TASK_DELETE_FAIL: null,
+    TASKS_LOAD_REQUEST: null
 });

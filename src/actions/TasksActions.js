@@ -4,6 +4,9 @@ import api from './../api';
 
 const TasksActions = {
     loadTasks(taskListId) {
+        AppDispatcher.dispatch({
+            type: AppConstants.TASKS_LOAD_REQUEST
+        });
         api.listTasks(taskListId)
         .then(data => {
             console.log(data);
