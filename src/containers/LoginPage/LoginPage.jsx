@@ -3,7 +3,7 @@ import React from 'react';
 import SessionStore from './../../stores/SessionStore';
 import SessionActions from './../../actions/SessionActions';
 
-import LoginPage from './../../pages/LoginPage/LoginPage';
+import LoginPage from './../../pages/LoginPage/LoginPage.jsx';
 
 function getStateFromFlux() {
     return {

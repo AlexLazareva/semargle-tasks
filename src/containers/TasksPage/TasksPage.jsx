@@ -9,8 +9,6 @@ import TaskCreateModal from './../../components/TaskCreateModal/TaskCreateModal'
 
 import TasksPage from './../../pages/TasksPage/TasksPage';
 
-import './styles.less';
-
 function getStateFromFlux() {
     return {
         tasks: TasksStore.getTasks(),
@@ -36,7 +34,7 @@ const TasksPageContainer = React.createClass({
     },
 
     componentWillReceiveProps(nextProps) {
-        if (this.props.params.id !==nextProps.params.id) {
+        if (this.props.params.id !== nextProps.params.id) {
             TasksActions.loadTasks(nextProps.params.id);
         }
     },
