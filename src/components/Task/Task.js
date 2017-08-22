@@ -4,6 +4,7 @@ import IconMenu from 'material-ui/lib/menus/icon-menu';
 import MenuItem from 'material-ui/lib/menus/menu-item';
 import IconButton from 'material-ui/lib/icon-button';
 import MoreVertIcon from 'material-ui/lib/svg-icons/navigation/more-vert';
+import NoteIcon from 'material-ui/lib/svg-icons/communication/message';
 import RaisedButton from 'material-ui/lib/raised-button';
 import FlatButton from 'material-ui/lib/flat-button';
 
@@ -62,6 +63,7 @@ const Task = React.createClass({
     },
 
     render() {
+        const {text, note, due, isCompleted, onDelete} = this.props;
         return (
             this.state.isEditing
             ?
@@ -69,9 +71,17 @@ const Task = React.createClass({
                     <input
                         className='task__input'
                         type='text'
-                        defaultValue={this.props.text}
+                        defaultValue={text}
                         onKeyDown={this.handleKeyDown}
                         ref={ c => this.input = c }
+                    />
+
+                    <textarea
+                        className='task__note-input'
+                        type='text'
+                        defaultValue={note}
+                        onKeyDown={this.handleKeyDown}
+                        ref={c => this.note = c}
                     />
                     <div className='task__toolbar'>
                         <div>
@@ -84,12 +94,32 @@ const Task = React.createClass({
                 <div className='task'>
                     <Checkbox
                         className='task__checkbox'
-                        checked={this.props.isCompleted}
+                        checked={isCompleted}
                         onCheck={this.handleCheck}
                     />
 
                     <div className='task__text' onClick={this.handleEdit}>
-                        <div className='task__title'>{ this.props.text }</div>
+                        <div className='task__title'>
+                            { text }
+                            {
+                                note
+                                ?
+                                    <span title={note}>
+                                        <NoteIcon className='task__note'/>
+                                    </span>
+                                :
+                                    null
+                            }
+                        </div>
+                        {
+                            due
+                            ?
+                                <div className='task__due'>
+                                    {'due ' + moment(due).fromNow()}
+                                </div>
+                            :
+                                null
+                        }
                     </div>
 
                     <IconMenu iconButtonElement={<IconButton><MoreVertIcon/></IconButton>}>
