@@ -1,4 +1,6 @@
 import React from 'react';
+import moment from 'moment';
+
 import Checkbox from 'material-ui/lib/checkbox';
 import IconMenu from 'material-ui/lib/menus/icon-menu';
 import MenuItem from 'material-ui/lib/menus/menu-item';
