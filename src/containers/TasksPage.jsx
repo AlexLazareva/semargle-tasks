@@ -96,7 +96,7 @@ const TasksPageContainer = React.createClass({
         const isConfirmed = confirm('Are you sure you want delete this task list? All tasks in it will be deleted too');
 
         if (isConfirmed) {
-            TasksListsActions.handleDeleteTaskList({
+            TasksListsActions.deleteTaskList({
                 taskListId: this.props.params.id
             });
         }
