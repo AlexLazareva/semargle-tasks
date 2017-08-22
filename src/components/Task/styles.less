@@ -18,6 +18,19 @@
   &__text {
     width: 100%;
     min-height: 20px;
+
+    &-input {
+      font-size: 16px;
+      margin: 8px 16px;
+      padding: 6px;
+      width: 100%;
+      border: 1px solid @divider-color;
+
+      &:focus {
+        outline: 0;
+        border: 1px solid @primary-color;
+      }
+    }
   }
 
   &__checkbox {
@@ -45,6 +58,32 @@
     &:focus {
       outline: 0;
       border: 1px solid @primary-color;
+    }
+  }
+
+  &__due {
+    width: 100%;
+    color: @secondary-text-color;
+    font-size: 13px;
+  }
+
+  &__note {
+    width: 15px !important;
+    height: 15px !important;
+    margin-left: 8px;
+
+    &-input {
+      font-size: 16px;
+      margin: 8px 16px;
+      padding: 6px;
+      width: 100%;
+      resize: vertical;
+      border: 1px solid @divider-color;
+
+      &:focus {
+        outline: 0;
+        border: 1px solid @primary-color;
+      }
     }
   }
 }
