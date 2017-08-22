@@ -7,11 +7,12 @@ import TasksListsActions from './../../actions/TasksListActions';
 
 import TaskCreateModal from './../../components/TaskCreateModal/TaskCreateModal';
 
-import TasksPage from './../../pages/TasksPage/TasksPage';
+import TasksPage from './../../components/TasksPage/TasksPage';
 
 function getStateFromFlux() {
     return {
         tasks: TasksStore.getTasks(),
+        error: TasksStore.getError(),
         isLoadingTasks: TasksStore.isLoadingTasks(),
         taskList: TaskListsStore.getCurrentTaskList() || {}
     };

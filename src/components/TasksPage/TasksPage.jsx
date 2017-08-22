@@ -6,7 +6,7 @@ import ImageEdit from 'material-ui/lib/svg-icons/image/edit';
 import ActionDelete from 'material-ui/lib/svg-icons/action/delete';
 import CircularProgress from 'material-ui/lib/circular-progress';
 
-import Task from './../../components/Task/Task';
+import Task from '../Task/Task';
 
 import './styles.less';
 
@@ -56,7 +56,7 @@ const TasksPage = React.createClass({
         return (
             <div className="tasksPage__tasks">
                 {
-                    this.state.tasks.map(task =>
+                    this.props.tasks.map(task =>
                         <Task
                             key={task.id}
                             text={task.text}
@@ -64,8 +64,8 @@ const TasksPage = React.createClass({
                             due={task.due}
                             isCompleted={task.isCompleted}
                             onDelete={this.props.onTaskDelete.bind(null, task.id)}
-                            onStatusChange={this.handleStatusChange.bind(null, task.id)}
-                            onUpdate={this.handleTaskUpdate.bind(null, task.id)}
+                            onStatusChange={this.props.onTaskStatusChange.bind(null, task.id)}
+                            onUpdate={this.props.onTaskUpdate.bind(null, task.id)}
                         />
                     )
                 }
@@ -74,6 +74,16 @@ const TasksPage = React.createClass({
     },
 
     render() {
+        if (this.props.error) {
+            return (
+                <div className="taskPage">
+                    <div className="taskPage__error">
+                        {this.props.error}
+                    </div>
+                </div>
+            );
+        }
+
         return (
             <div className="taskPage">
                 <div className="taskPage__header">
@@ -97,7 +107,7 @@ const TasksPage = React.createClass({
                     }
 
                     <div className="taskPage__tools">
-                        <IconButton onClick={this.handleAddTask}>
+                        <IconButton onClick={this.props.onAddTask}>
                             <ContentAdd/>
                         </IconButton>
                         <IconButton onClick={this.props.onDeleteTaskList}>
