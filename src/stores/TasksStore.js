@@ -25,6 +25,10 @@ const TasksStore = Object.assign({}, EventEmitter.prototype, {
         return _tasks;
     },
 
+    getError() {
+        return _error;
+    },
+
     isLoadingTasks() {
         return _isLoading;
     },

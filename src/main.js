@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, hashHistory } from 'react-router';
+import { Router, Route, Redirect, hashHistory } from 'react-router';
 
 import SessionActions from './actions/SessionActions';
 import SessionStore from './stores/SessionStore';
@@ -10,7 +10,7 @@ import LoggedInLayout from './containers/LoggedInLayout/LoggedInLayout';
 import LoginPageContainer from './containers/LoginPage/LoginPage.jsx';
 import AboutPage from './pages/AboutPage/AboutPage.jsx';
 import TasklistsPage from './pages/TaskslistsPage/TasklistsPage.jsx';
-import TasksPageContainer from './containers/TasksPage/TasksPage.jsx';
+import TasksPage from './containers/TasksPage.jsx';
 
 window.handleGoogleApiLoaded = () => {
     SessionActions.authorize(true, renderApp);
@@ -24,7 +24,7 @@ function renderApp() {
                 <Route component={LoggedInLayout} onEnter={requireAuth}>
                     <Route path='/about' component={AboutPage} />
                     <Route path='/lists' component={TasklistsPage}>
-                        <Route path='/lists/:id' component={TasksPageContainer}/>
+                        <Route path='/lists/:id' component={TasksPage}/>
                     </Route>
                 </Route>
             </Route>

@@ -1,13 +1,13 @@
 import React from 'react';
 
-import TasksStore from './../../stores/TasksStore';
-import TaskListsStore from './../../stores/TasksListStore';
-import TasksActions from './../../actions/TasksActions';
-import TasksListsActions from './../../actions/TasksListActions';
+import TasksStore from '../stores/TasksStore';
+import TaskListsStore from '../stores/TasksListStore';
+import TasksActions from '../actions/TasksActions';
+import TasksListsActions from '../actions/TasksListActions';
 
-import TaskCreateModal from './../../components/TaskCreateModal/TaskCreateModal';
+import TasksPage from './../components/TasksPage/TasksPage.jsx';
 
-import TasksPage from './../../components/TasksPage/TasksPage';
+import TaskCreateModal from '../components/TaskCreateModal/TaskCreateModal';
 
 function getStateFromFlux() {
     return {
@@ -19,6 +19,10 @@ function getStateFromFlux() {
 }
 
 const TasksPageContainer = React.createClass({
+    contextTypes: {
+        router: React.PropTypes.object.isRequired
+    },
+
     getInitialState() {
         return {
             ...getStateFromFlux(),
@@ -28,20 +32,24 @@ const TasksPageContainer = React.createClass({
 
     componentWillMount() {
         TasksActions.loadTasks(this.props.params.id);
+        TasksListsActions.loadTaskLists(this.props.params.id);
     },
 
     componentDidMount() {
         TasksStore.addChangeListener(this._onChange);
+        TaskListsStore.addChangeListener(this._onChange);
     },
 
     componentWillReceiveProps(nextProps) {
         if (this.props.params.id !== nextProps.params.id) {
             TasksActions.loadTasks(nextProps.params.id);
+            TasksListsActions.loadTaskLists(nextProps.params.id);
         }
     },
 
     componentWillUnmount() {
-        TasksStore.addChangeListener(this._onChange);
+        TasksStore.removeChangeListener(this._onChange);
+        TaskListsStore.removeChangeListener(this._onChange);
     },
 
     handleTaskStatusChange(taskId, { isCompleted }) {
@@ -52,11 +60,18 @@ const TasksPageContainer = React.createClass({
         });
     },
 
-    handleTaskUpdate(taskId, { text }) {
+    handleTaskUpdate(taskId, task) {
         TasksActions.updateTask({
             taskListId: this.props.params.id,
             taskId: taskId,
-            text: text
+            ...task
+        });
+    },
+
+    handleTaskDelete(taskId) {
+        TasksActions.deleteTask({
+            taskListId: this.props.params.id,
+            taskId: taskId
         });
     },
 
@@ -64,9 +79,10 @@ const TasksPageContainer = React.createClass({
         this.setState({ isCreatingTask: true });
     },
 
-    handleClose() {
+    handleTaskCreateModalClose() {
         this.setState({ isCreatingTask: false });
     },
+
 
     handleTaskSubmit(task) {
         const taskListId = this.props.params.id;
@@ -101,10 +117,11 @@ const TasksPageContainer = React.createClass({
                 <TasksPage
                     taskList={this.state.taskList}
                     tasks={this.state.tasks}
-                    isLoadingTasks={this.state.isLoadingTasks}
                     error={this.state.error}
+                    isLoadingTasks={this.state.isLoadingTasks}
+                    onUpdateTaskList={this.handleUpdateTaskList}
                     onAddTask={this.handleAddTask}
-                    onStatusChange={this.handleTaskStatusChange}
+                    onTaskStatusChange={this.handleTaskStatusChange}
                     onTaskUpdate={this.handleTaskUpdate}
                     onTaskDelete={this.handleTaskDelete}
                     onDeleteTaskList={this.handleDeleteTaskList}
@@ -112,7 +129,7 @@ const TasksPageContainer = React.createClass({
                 <TaskCreateModal
                     isOpen={this.state.isCreatingTask}
                     onSubmit={this.handleTaskSubmit}
-                    onClose={this.handleClose}
+                    onClose={this.handleTaskCreateModalClose}
                 />
             </div>
         );
