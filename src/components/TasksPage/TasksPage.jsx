@@ -102,7 +102,7 @@ const TasksPage = React.createClass({
                                 className="taskPage__title"
                                 onClick={this.handleEditTaskList}
                             >
-                                {this.props.taskList.name}
+                                {this.props.taskList.text}
                             </h2>
                     }
 

@@ -104,7 +104,7 @@ const TaskCreateModal = React.createClass({
                     hintText='e.g. 2.6 whole milk'
                     floatingLabelText='Enter task note'
                 />
-                <DatePicker
+                <DatePicker className='TaskCreateModal__date'
                     autoOk
                     fullWidth
                     value={due}
