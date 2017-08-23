@@ -15,6 +15,8 @@ import './styles.less';
 const ENTER_KEY = 13;
 const ESC_KEY = 27;
 
+moment.locale('ru');
+
 const Task = React.createClass({
     getInitialState() {
         return {
@@ -66,6 +68,7 @@ const Task = React.createClass({
 
     render() {
         const {text, note, due, isCompleted, onDelete} = this.props;
+
         return (
             this.state.isEditing
             ?
@@ -117,7 +120,7 @@ const Task = React.createClass({
                             due
                             ?
                                 <div className='task__due'>
-                                    {'due' + moment(due).fromNow()}
+                                    {'событие ' + moment(due).fromNow()}
                                 </div>
                             :
                                 null
