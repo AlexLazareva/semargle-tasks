@@ -84,6 +84,10 @@ const TasksActions = {
             title: params.text,
             notes: params.note
         };
+
+        if (params.due) {
+            newTask.due = (new Date(params.due)).toISOString();
+        }
         api.insertTask(newTask)
         .then(data => {
             AppDispatcher.dispatch({
