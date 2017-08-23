@@ -126,7 +126,7 @@ const Task = React.createClass({
 
                     <IconMenu iconButtonElement={<IconButton><MoreVertIcon/></IconButton>}>
                         <MenuItem onClick={this.handleEdit}>Edit</MenuItem>
-                        <MenuItem>Delete</MenuItem>
+                        <MenuItem onClick={onDelete}>Delete</MenuItem>
                     </IconMenu>
                 </div>
         );
