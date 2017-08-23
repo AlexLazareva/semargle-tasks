@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Dialog from 'material-ui/lib/dialog';
+import DatePicker from 'material-ui/lib/date-picker/date-picker';
 import FlatButton from 'material-ui/lib/flat-button';
 import TextField from 'material-ui/lib/text-field';
 
@@ -9,14 +10,16 @@ import './styles.less';
 const TaskCreateModal = React.createClass({
     getInitialState() {
         return {
-            text : ''
+            text : '',
+            note: '',
+            due: null
         };
     },
 
     handleClose() {
         const { onClose} = this.props;
 
-        this.setState({ text: ''});
+        this.resetState();
 
         if (onClose) {
             onClose();
@@ -28,11 +31,13 @@ const TaskCreateModal = React.createClass({
 
         if (onSubmit) {
             onSubmit({
-                text: this.state.text
+                text: this.state.text,
+                note: this.state.note,
+                due: this.state.due
             });
         }
 
-        this.setState({ text: '' })
+        this.resetState();
     },
 
     handleTextChange(e) {
@@ -41,8 +46,28 @@ const TaskCreateModal = React.createClass({
         });
     },
 
+    handleNoteChange(e) {
+        this.setState({
+            note: e.target.value
+        });
+    },
+
+    handleDueChange(e, date) {
+        this.setState({
+            due: date
+        });
+    },
+
+    resetState() {
+        this.setState({
+            text: '',
+            note: '',
+            due: null
+        });
+    },
+
     render() {
-        const { text } = this.state;
+        const { text, note, due } = this.state;
         const { isOpen } = this.props;
         return (
             <Dialog
@@ -60,6 +85,7 @@ const TaskCreateModal = React.createClass({
                     />
                 ]}
                 open={isOpen}
+                onRequestClose={this.handleClose}
             >
                 <h3 className='TaskCreateModal__title'>Add task</h3>
                 <TextField
@@ -69,6 +95,21 @@ const TaskCreateModal = React.createClass({
                     onChange={this.handleTextChange}
                     hintText='e.g. buy a bottle of milk'
                     floatingLabelText='Enter task description'
+                />
+                <TextField
+                    fullWidth
+                    ref={c => this.taskInput = c}
+                    value={note}
+                    onChange={this.handleNoteChange}
+                    hintText='e.g. 2.6 whole milk'
+                    floatingLabelText='Enter task note'
+                />
+                <DatePicker
+                    autoOk
+                    fullWidth
+                    value={due}
+                    onChange={this.handleDueChange}
+                    floatingLabelText='Enter due time'
                 />
             </Dialog>
         );
