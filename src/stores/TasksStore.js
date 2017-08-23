@@ -20,6 +20,14 @@ function formatTask(data) {
     };
 }
 
+function getErrorMessageByCode(code) {
+    const errorMessages = {
+        400: 'Cannot load task list'
+    };
+
+    return errorMessages[code] || 'Something bad happened';
+}
+
 const TasksStore = Object.assign({}, EventEmitter.prototype, {
     getTasks() {
         return _tasks;
@@ -66,7 +74,7 @@ AppDispatcher.register(function (action) {
 
         case AppConstants.TASKS_LOAD_FAIL: {
             _tasks = [];
-            _error = action.error;
+            _error = getErrorMessageByCode(action.error.code);
             _isLoading = false;
 
             TasksStore.emitChange();
