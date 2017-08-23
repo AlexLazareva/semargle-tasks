@@ -70,10 +70,10 @@ export default {
         return this.makeRequest(request);
     },
 
-    insertTask({taskListId, title}) {
+    insertTask({taskListId, ...params}) {
         const request = gapi.client.tasks.tasks.insert({
             tasklist: taskListId,
-            title: title
+            ...params
         });
 
         return this.makeRequest(request);
