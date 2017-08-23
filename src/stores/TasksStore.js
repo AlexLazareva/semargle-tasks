@@ -58,6 +58,7 @@ AppDispatcher.register(function (action) {
     switch(action.type) {
         case AppConstants.TASKS_LOAD_REQUEST: {
             _tasks = [];
+            _error = null;
             _isLoading = true;
 
             TasksStore.emitChange();
@@ -66,6 +67,7 @@ AppDispatcher.register(function (action) {
 
         case AppConstants.TASKS_LOAD_SUCCESS: {
             _tasks = action.items.map(formatTask);
+            _error = null;
             _isLoading = false;
 
             TasksStore.emitChange();
@@ -89,7 +91,7 @@ AppDispatcher.register(function (action) {
             break;
         }
 
-        case AppConstants.TASK_CREATE_REQUEST: {
+        case AppConstants.TASK_UPDATE_REQUEST: {
             const updatedTaskIndex = _tasks.findIndex(task => task.id === action.taskId);
 
             _tasks[updatedTaskIndex].isCompleted = action.isCompleted !== undefined ? action.isCompleted : _tasks[updatedTaskIndex].isCompleted;
