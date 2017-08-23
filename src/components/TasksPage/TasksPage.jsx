@@ -2,6 +2,7 @@ import React from 'react';
 
 import IconButton from 'material-ui/lib/icon-button';
 import ContentAdd from 'material-ui/lib/svg-icons/content/add';
+import ImageEdit from 'material-ui/lib/svg-icons/image/edit';
 import ActionDelete from 'material-ui/lib/svg-icons/action/delete';
 import CircularProgress from 'material-ui/lib/circular-progress';
 

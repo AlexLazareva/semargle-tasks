@@ -117,7 +117,7 @@ const Task = React.createClass({
                             due
                             ?
                                 <div className='task__due'>
-                                    {'due ' + moment(due).fromNow()}
+                                    {'due' + moment(due).fromNow()}
                                 </div>
                             :
                                 null

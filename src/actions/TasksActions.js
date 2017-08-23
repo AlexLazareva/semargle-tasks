@@ -25,7 +25,7 @@ const TasksActions = {
 
     updateTaskStatus(params) {
         AppDispatcher.dispatch({
-            type: AppConstants.TASK_LIST_UPDATE_REQUEST,
+            type: AppConstants.TASK_UPDATE_REQUEST,
             taskId: params.taskId,
             isCompleted: params.isCompleted
         });
@@ -60,7 +60,8 @@ const TasksActions = {
         api.updateTask({
             taskListId: params.taskListId,
             taskId: params.taskId,
-            title: params.text
+            title: params.text,
+            notes: params.note
         })
             .then(data => {
                 AppDispatcher.dispatch({
@@ -78,10 +79,12 @@ const TasksActions = {
     },
 
     createTask(params) {
-        api.insertTask({
+        const newTask = {
             taskListId: params.taskListId,
-            title: params.text
-        })
+            title: params.text,
+            notes: params.note
+        };
+        api.insertTask(newTask)
         .then(data => {
             AppDispatcher.dispatch({
                 type: AppConstants.TASK_CREATE_SUCCESS,
@@ -99,7 +102,7 @@ const TasksActions = {
     deleteTask(params) {
         api.deleteTask({
             taskListId: params.taskListId,
-            title: params.taskId
+            taskId: params.taskId
         })
             .then(data => {
                 AppDispatcher.dispatch({
